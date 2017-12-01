@@ -1,0 +1,762 @@
+<?xml version="1.0" ?>
+<Production className="PAProductionMaster" minorVersion="10" revVersion="5" majorVersion="2">
+  <uid>7</uid>
+  <properties>
+    <name>Tactical</name>
+    <description></description>
+    <sportField>Football</sportField>
+  </properties>
+  <master>
+    <realization name="Clean Feed" decoSync="true">
+      <width>1920</width>
+      <height>1080</height>
+      <operators>
+        <operator name="master">
+          <sourceId>6</sourceId>
+          <realType>PERSPECTIVE</realType>
+          <min_x>0.0258876</min_x>
+          <max_x>0.992513</max_x>
+          <min_y>-0.115385</min_y>
+          <max_y>1.15089</max_y>
+          <bezier_policy>
+            <bezier>
+              <p0>
+                <x>0</x>
+                <y>0</y>
+              </p0>
+              <p1>
+                <x>0.400366</x>
+                <y>0.19</y>
+              </p1>
+              <p2>
+                <x>0.559415</x>
+                <y>0.77</y>
+              </p2>
+              <p3>
+                <x>1</x>
+                <y>1</y>
+              </p3>
+            </bezier>
+          </bezier_policy>
+          <pidxycontrol_policy>
+            <controller_x>
+              <pidcontroller>
+                <controller>0.05</controller>
+                <integral>0.01</integral>
+                <derivate>0</derivate>
+              </pidcontroller>
+            </controller_x>
+            <controller_y>
+              <pidcontroller>
+                <controller>0.04</controller>
+                <integral>0.01</integral>
+                <derivate>0</derivate>
+              </pidcontroller>
+            </controller_y>
+          </pidxycontrol_policy>
+          <pidcontroller>
+            <controller>0.01</controller>
+            <integral>0.005</integral>
+            <derivate>0</derivate>
+          </pidcontroller>
+          <manualOverride>0</manualOverride>
+          <currentState>
+            <elem>0.500000</elem>
+            <elem>0.500000</elem>
+            <elem>1.000000</elem>
+            <elem>0.994882</elem>
+            <elem>1.777778</elem>
+            <elem>0.000000</elem>
+            <elem>-0.953119</elem>
+            <elem>109.861567</elem>
+            <elem>0.000000</elem>
+            <elem>1.262029</elem>
+            <elem>-2.895989</elem>
+            <elem>68.908310</elem>
+          </currentState>
+          <decorator>
+            <top_black_height>0</top_black_height>
+            <bottom_black_height>0</bottom_black_height>
+          </decorator>
+        </operator>
+      </operators>
+      <strategies selected="Strategy_OneOpMaster_Analysis_BallDetector">
+        <strategy selected="bgSubPercentile" className="Strategy_OneOpMaster_Analysis">
+          <roleOperators role_master="master"/>
+          <GameFramer>
+            <zoomMin>0.7</zoomMin>
+            <zoomMax>1</zoomMax>
+            <dynamicZoomMaxEnabled>true</dynamicZoomMaxEnabled>
+            <zoomInThreshold>1.03</zoomInThreshold>
+            <zoomOutThreshold>1.12</zoomOutThreshold>
+            <zoomMaxSwToMaster enabled="false">1</zoomMaxSwToMaster>
+            <motionStartThreshold>4.999999987e-07</motionStartThreshold>
+            <motionStopThreshold>0</motionStopThreshold>
+          </GameFramer>
+          <ActivityDetector>
+            <massPercentageEnabled>true</massPercentageEnabled>
+            <minMassPercentage>0.000102857</minMassPercentage>
+            <maxMassPercentage>0.000274286</maxMassPercentage>
+            <massVarianceEnabled>false</massVarianceEnabled>
+            <minVariance>0.62</minVariance>
+            <maxVariance>1.8</maxVariance>
+            <TemporalSmoother>
+              <temporalSmootherEnabled>true</temporalSmootherEnabled>
+              <thresholdNumDifferentFrames>15</thresholdNumDifferentFrames>
+              <sensitivityInSigmas>8</sensitivityInSigmas>
+            </TemporalSmoother>
+          </ActivityDetector>
+        </strategy>
+        <strategy selected="opticalFlowAndBgs" className="Strategy_OneOpMaster_Analysis_BallDetector">
+          <roleOperators role_master="master"/>
+          <GameFramer>
+            <zoomMin>0.7</zoomMin>
+            <zoomMax>1</zoomMax>
+            <dynamicZoomMaxEnabled>true</dynamicZoomMaxEnabled>
+            <zoomInThreshold>1.03</zoomInThreshold>
+            <zoomOutThreshold>1.12</zoomOutThreshold>
+            <zoomMaxSwToMaster enabled="false">1</zoomMaxSwToMaster>
+            <motionStartThreshold>4.999999987e-07</motionStartThreshold>
+            <motionStopThreshold>0</motionStopThreshold>
+          </GameFramer>
+          <ActivityDetector>
+            <massPercentageEnabled>true</massPercentageEnabled>
+            <minMassPercentage>0.000102857</minMassPercentage>
+            <maxMassPercentage>0.000274286</maxMassPercentage>
+            <massVarianceEnabled>false</massVarianceEnabled>
+            <minVariance>0.62</minVariance>
+            <maxVariance>1.8</maxVariance>
+            <TemporalSmoother>
+              <temporalSmootherEnabled>true</temporalSmootherEnabled>
+              <thresholdNumDifferentFrames>15</thresholdNumDifferentFrames>
+              <sensitivityInSigmas>8</sensitivityInSigmas>
+            </TemporalSmoother>
+          </ActivityDetector>
+          <PlayersBallMerge>
+            <windowSmoothness>8</windowSmoothness>
+            <ballCentered>false</ballCentered>
+          </PlayersBallMerge>
+        </strategy>
+      </strategies>
+    </realization>
+    <filter>
+      <preset id="0">
+        <unsharp>
+          <radius>1.9</radius>
+          <level>5</level>
+          <amount>0.7</amount>
+        </unsharp>
+      </preset>
+    </filter>
+  </master>
+  <panorama>
+    <realization name="Panorama" decoSync="true">
+      <width>3840</width>
+      <height>1080</height>
+      <operators>
+        <operator name="Panorama">
+          <sourceId>6</sourceId>
+          <realType>CROPPED</realType>
+          <min_x>0.0302648</min_x>
+          <max_x>0.981618</max_x>
+          <min_y>-0.25</min_y>
+          <max_y>1.25</max_y>
+          <bezier_policy>
+            <bezier>
+              <p0>
+                <x>0</x>
+                <y>0</y>
+              </p0>
+              <p1>
+                <x>0.1</x>
+                <y>0.1</y>
+              </p1>
+              <p2>
+                <x>0.9</x>
+                <y>0.9</y>
+              </p2>
+              <p3>
+                <x>1</x>
+                <y>1</y>
+              </p3>
+            </bezier>
+          </bezier_policy>
+          <pidxycontrol_policy>
+            <controller_x>
+              <pidcontroller>
+                <controller>0.1</controller>
+                <integral>0.05</integral>
+                <derivate>0</derivate>
+              </pidcontroller>
+            </controller_x>
+            <controller_y>
+              <pidcontroller>
+                <controller>0.1</controller>
+                <integral>0.05</integral>
+                <derivate>0</derivate>
+              </pidcontroller>
+            </controller_y>
+          </pidxycontrol_policy>
+          <pidcontroller>
+            <controller>0.1</controller>
+            <integral>0.05</integral>
+            <derivate>0</derivate>
+          </pidcontroller>
+          <manualOverride>1</manualOverride>
+          <currentState>
+            <elem>0.500000</elem>
+            <elem>0.500000</elem>
+            <elem>0.666667</elem>
+            <elem>0.331841</elem>
+            <elem>3.555556</elem>
+            <elem>0.000000</elem>
+            <elem>-0.105556</elem>
+            <elem>109.864914</elem>
+            <elem>0.000000</elem>
+            <elem>0.288662</elem>
+            <elem>-2.903907</elem>
+            <elem>68.918928</elem>
+          </currentState>
+          <decorator>
+            <top_black_height>0</top_black_height>
+            <bottom_black_height>0</bottom_black_height>
+          </decorator>
+        </operator>
+      </operators>
+      <strategies selected="Strategy_OneOpFixed">
+        <strategy selected="" className="Strategy_OneOpFixed">
+          <roleOperators role_fixed="Panorama"/>
+        </strategy>
+      </strategies>
+    </realization>
+    <filter>
+      <preset id="0">
+        <unsharp>
+          <radius>0.5</radius>
+          <level>0</level>
+          <amount>0</amount>
+        </unsharp>
+      </preset>
+    </filter>
+  </panorama>
+  <Outputs>
+    <output name="MR" key="{10e13ca3-2af1-45ca-9d95-68afd02839e8}">
+      <realization name="MR" decoSync="true">
+        <width>1920</width>
+        <height>1080</height>
+        <operators>
+          <operator name="MR">
+            <sourceId>1</sourceId>
+            <realType>CROPPED</realType>
+            <min_x>0</min_x>
+            <max_x>1</max_x>
+            <min_y>0</min_y>
+            <max_y>1</max_y>
+            <bezier_policy>
+              <bezier>
+                <p0>
+                  <x>0</x>
+                  <y>0</y>
+                </p0>
+                <p1>
+                  <x>0.1</x>
+                  <y>0.1</y>
+                </p1>
+                <p2>
+                  <x>0.9</x>
+                  <y>0.9</y>
+                </p2>
+                <p3>
+                  <x>1</x>
+                  <y>1</y>
+                </p3>
+              </bezier>
+            </bezier_policy>
+            <pidxycontrol_policy>
+              <controller_x>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_x>
+              <controller_y>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_y>
+            </pidxycontrol_policy>
+            <pidcontroller>
+              <controller>0.1</controller>
+              <integral>0.05</integral>
+              <derivate>0</derivate>
+            </pidcontroller>
+            <manualOverride>1</manualOverride>
+            <currentState>
+              <elem>0.500000</elem>
+              <elem>0.500000</elem>
+              <elem>1.000000</elem>
+              <elem>1.186609</elem>
+              <elem>1.777778</elem>
+              <elem>0.000000</elem>
+              <elem>35.374288</elem>
+              <elem>107.703621</elem>
+              <elem>13.750854</elem>
+              <elem>-37.156218</elem>
+              <elem>-5.607926</elem>
+              <elem>57.672774</elem>
+            </currentState>
+            <decorator>
+              <top_black_height>0</top_black_height>
+              <bottom_black_height>0</bottom_black_height>
+            </decorator>
+          </operator>
+        </operators>
+        <strategies selected="Strategy_OneOpFixed">
+          <strategy selected="" className="Strategy_OneOpFixed">
+            <roleOperators role_fixed="MR"/>
+          </strategy>
+        </strategies>
+      </realization>
+      <filter>
+        <preset id="0">
+          <unsharp>
+            <radius>0.5</radius>
+            <level>0</level>
+            <amount>0</amount>
+          </unsharp>
+        </preset>
+      </filter>
+    </output>
+    <output name="ML" key="{22046b1c-f207-4343-be56-555b62409b06}">
+      <realization name="ML" decoSync="true">
+        <width>1920</width>
+        <height>1080</height>
+        <operators>
+          <operator name="ML">
+            <sourceId>2</sourceId>
+            <realType>CROPPED</realType>
+            <min_x>0</min_x>
+            <max_x>1</max_x>
+            <min_y>0</min_y>
+            <max_y>1</max_y>
+            <bezier_policy>
+              <bezier>
+                <p0>
+                  <x>0</x>
+                  <y>0</y>
+                </p0>
+                <p1>
+                  <x>0.1</x>
+                  <y>0.1</y>
+                </p1>
+                <p2>
+                  <x>0.9</x>
+                  <y>0.9</y>
+                </p2>
+                <p3>
+                  <x>1</x>
+                  <y>1</y>
+                </p3>
+              </bezier>
+            </bezier_policy>
+            <pidxycontrol_policy>
+              <controller_x>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_x>
+              <controller_y>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_y>
+            </pidxycontrol_policy>
+            <pidcontroller>
+              <controller>0.1</controller>
+              <integral>0.05</integral>
+              <derivate>0</derivate>
+            </pidcontroller>
+            <manualOverride>1</manualOverride>
+            <currentState>
+              <elem>0.500000</elem>
+              <elem>0.500000</elem>
+              <elem>1.000000</elem>
+              <elem>1.241636</elem>
+              <elem>1.777778</elem>
+              <elem>0.000000</elem>
+              <elem>-37.192044</elem>
+              <elem>105.277826</elem>
+              <elem>0.000000</elem>
+              <elem>40.241748</elem>
+              <elem>6.260460</elem>
+              <elem>55.159495</elem>
+            </currentState>
+            <decorator>
+              <top_black_height>0</top_black_height>
+              <bottom_black_height>0</bottom_black_height>
+            </decorator>
+          </operator>
+        </operators>
+        <strategies selected="Strategy_OneOpFixed">
+          <strategy selected="" className="Strategy_OneOpFixed">
+            <roleOperators role_fixed="ML"/>
+          </strategy>
+        </strategies>
+      </realization>
+      <filter>
+        <preset id="0">
+          <unsharp>
+            <radius>0.5</radius>
+            <level>0</level>
+            <amount>0</amount>
+          </unsharp>
+        </preset>
+      </filter>
+    </output>
+    <output name="MC" key="{fc554c6e-e5a0-4924-b9b2-d614a11e0c10}">
+      <realization name="MC" decoSync="true">
+        <width>1920</width>
+        <height>1080</height>
+        <operators>
+          <operator name="MC">
+            <sourceId>4</sourceId>
+            <realType>CROPPED</realType>
+            <min_x>0</min_x>
+            <max_x>1</max_x>
+            <min_y>0</min_y>
+            <max_y>1</max_y>
+            <bezier_policy>
+              <bezier>
+                <p0>
+                  <x>0</x>
+                  <y>0</y>
+                </p0>
+                <p1>
+                  <x>0.1</x>
+                  <y>0.1</y>
+                </p1>
+                <p2>
+                  <x>0.9</x>
+                  <y>0.9</y>
+                </p2>
+                <p3>
+                  <x>1</x>
+                  <y>1</y>
+                </p3>
+              </bezier>
+            </bezier_policy>
+            <pidxycontrol_policy>
+              <controller_x>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_x>
+              <controller_y>
+                <pidcontroller>
+                  <controller>0.1</controller>
+                  <integral>0.05</integral>
+                  <derivate>0</derivate>
+                </pidcontroller>
+              </controller_y>
+            </pidxycontrol_policy>
+            <pidcontroller>
+              <controller>0.1</controller>
+              <integral>0.05</integral>
+              <derivate>0</derivate>
+            </pidcontroller>
+            <manualOverride>1</manualOverride>
+            <currentState>
+              <elem>0.500000</elem>
+              <elem>0.500000</elem>
+              <elem>1.000000</elem>
+              <elem>0.731933</elem>
+              <elem>1.777778</elem>
+              <elem>0.000000</elem>
+              <elem>0.189409</elem>
+              <elem>112.813644</elem>
+              <elem>0.584885</elem>
+              <elem>0.487566</elem>
+              <elem>-6.448662</elem>
+              <elem>68.345219</elem>
+            </currentState>
+            <decorator>
+              <top_black_height>0</top_black_height>
+              <bottom_black_height>0</bottom_black_height>
+            </decorator>
+          </operator>
+        </operators>
+        <strategies selected="Strategy_OneOpFixed">
+          <strategy selected="" className="Strategy_OneOpFixed">
+            <roleOperators role_fixed="MC"/>
+          </strategy>
+        </strategies>
+      </realization>
+      <filter>
+        <preset id="0">
+          <unsharp>
+            <radius>0.5</radius>
+            <level>0</level>
+            <amount>0</amount>
+          </unsharp>
+        </preset>
+      </filter>
+    </output>
+  </Outputs>
+  <skippingFrame>
+    <node mode="MANUAL" totFrames="2" nonSkipFrames="1" name="analyzer"/>
+    <node mode="MANUAL" totFrames="2" nonSkipFrames="1" name="ballDetector"/>
+  </skippingFrame>
+  <observers>
+    <analyzerBGSOpenCV>
+      <history>2500</history>
+      <numMixtures>-1</numMixtures>
+      <bgRatio>0.9</bgRatio>
+      <varThreshold>16</varThreshold>
+      <varThresholdGen>9</varThresholdGen>
+      <varInit>10</varInit>
+      <varMin>3</varMin>
+      <varMax>25</varMax>
+      <ct>0.05</ct>
+      <tau>0.77</tau>
+      <filtering radius="2">true</filtering>
+      <shadowDetection>true</shadowDetection>
+      <nShadowDetection>0</nShadowDetection>
+      <colorSpace>0</colorSpace>
+    </analyzerBGSOpenCV>
+    <analyzer_opt_flow>
+      <roi>
+        <point y="-30.93041764839529" x="-52.5683112370535"/>
+        <point y="-31.0761178445977" x="52.70659938114104"/>
+        <point y="34.00000000000001" x="52.49999999999989"/>
+        <point y="33.99999999999999" x="-52.50000000000006"/>
+      </roi>
+      <downscalefactor>4</downscalefactor>
+      <homographyEnabled>true</homographyEnabled>
+      <params>
+        <flowWeight>500</flowWeight>
+        <gammaFlow>0.8</gammaFlow>
+        <scaleFlow>4.7</scaleFlow>
+        <backwards>true</backwards>
+        <numLevels>1</numLevels>
+        <pyrScale>0.5</pyrScale>
+        <winSize>20</winSize>
+        <numIter>1</numIter>
+        <polyN>5</polyN>
+        <polySigma>1.2</polySigma>
+        <columnsRatio>0.38</columnsRatio>
+        <rowsRatio>0.38</rowsRatio>
+        <percentile right="0.07" top="0.005" left="0.07" bottom="0.01"/>
+        <margin right="0.09" top="0.22" left="0.09" bottom="0.2"/>
+        <dynamicMargins enabled="true">3</dynamicMargins>
+        <GOEParams minVariance="3" thresholdUpdate="50" maxQueueSize="2500" sensitivityThresholdUpdate="8" numSamplesOmitInit="50" maxVariance="100"/>
+      </params>
+    </analyzer_opt_flow>
+    <analyzerBallDetector>
+      <analyzer>
+        <roi>
+          <point y="-33.51300825055313" x="-52.96857324123469"/>
+          <point y="-34.06868356955251" x="6.048597796454597"/>
+          <point y="30.03933922010461" x="19.74284525391686"/>
+          <point y="29.20985891343359" x="-49.8099297538764"/>
+        </roi>
+        <downscalefactor>2</downscalefactor>
+        <params>
+          <M>4</M>
+          <Tb>16</Tb>
+          <TB>0.5</TB>
+          <Tg>11</Tg>
+          <Sigma>15</Sigma>
+          <AlphaT>0.01</AlphaT>
+          <CT>0.027</CT>
+          <ShadowDetection>1</ShadowDetection>
+          <Tau>0.5</Tau>
+          <Enabled>0</Enabled>
+        </params>
+      </analyzer>
+      <analyzer>
+        <roi>
+          <point y="-33.94573863884612" x="-54.31255819387336"/>
+          <point y="-34.22687741290636" x="53.97566171734861"/>
+          <point y="33.58315083271211" x="51.99224700676708"/>
+          <point y="34.35004219651967" x="-52.240219650652"/>
+        </roi>
+        <downscalefactor>2</downscalefactor>
+        <params>
+          <M>4</M>
+          <Tb>16</Tb>
+          <TB>0.5</TB>
+          <Tg>11</Tg>
+          <Sigma>15</Sigma>
+          <AlphaT>0.01</AlphaT>
+          <CT>0.027</CT>
+          <ShadowDetection>1</ShadowDetection>
+          <Tau>0.5</Tau>
+          <Enabled>0</Enabled>
+        </params>
+      </analyzer>
+      <analyzer>
+        <roi>
+          <point y="-34.00000014696258" x="-1.189481330507491"/>
+          <point y="-34.00000000000001" x="52.50000000000004"/>
+          <point y="33.99999999999998" x="52.5"/>
+          <point y="33.99998832987577" x="-6.027639633468548"/>
+        </roi>
+        <downscalefactor>2</downscalefactor>
+        <params>
+          <M>4</M>
+          <Tb>16</Tb>
+          <TB>0.5</TB>
+          <Tg>11</Tg>
+          <Sigma>15</Sigma>
+          <AlphaT>0.01</AlphaT>
+          <CT>0.027</CT>
+          <ShadowDetection>1</ShadowDetection>
+          <Tau>0.5</Tau>
+          <Enabled>0</Enabled>
+        </params>
+      </analyzer>
+      <params>
+        <tolerance>1.05</tolerance>
+        <trajectorySigma>0.05</trajectorySigma>
+      </params>
+    </analyzerBallDetector>
+  </observers>
+  <composition height="1080" width="1920">
+    <backgroundColor green="0" blue="0" red="0"/>
+    <overlays>
+      <overlay sourceKey="clean_feed" type="Video" height="1080" enabled="true" linearFilter="true" name="CF" width="1920">
+        <border thickness="1" green="0" blue="0" red="0"/>
+        <sourceCropPoly>
+          <point y="0" x="0"/>
+          <point y="0" x="1"/>
+          <point y="1" x="1"/>
+          <point y="1" x="0"/>
+        </sourceCropPoly>
+        <targetCropPoly>
+          <point y="0" x="0"/>
+          <point y="0" x="1"/>
+          <point y="1" x="1"/>
+          <point y="1" x="0"/>
+        </targetCropPoly>
+      </overlay>
+    </overlays>
+  </composition>
+  <Encoders>
+    <encoders feed="{22046b1c-f207-4343-be56-555b62409b06}" name="ML" id="{470cb02b-25f6-4327-83c8-d946f544de7f}">
+      <enabled>1</enabled>
+      <bitrate>10000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations>
+        <destination>
+          <type>file</type>
+          <format>mp4</format>
+          <uri>D:/atvrecordings/MasterLeft_%DATETIME%.mp4</uri>
+        </destination>
+      </destinations>
+    </encoders>
+    <encoders feed="composition" name="Program Feed (With overlays) - Quality A" id="{52a3e7fe-c3fc-4950-9811-674dc46cd07e}">
+      <enabled>0</enabled>
+      <bitrate>5000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations/>
+    </encoders>
+    <encoders feed="clean_feed" name="Clean Feed" id="{55dc7079-8ec5-4258-af2d-396d7b8ae48d}">
+      <enabled>1</enabled>
+      <bitrate>10000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations>
+        <destination>
+          <type>file</type>
+          <format>mp4</format>
+          <uri>D:/atvrecordings/CleanFeed_%DATETIME%.mp4</uri>
+        </destination>
+      </destinations>
+    </encoders>
+    <encoders feed="{10e13ca3-2af1-45ca-9d95-68afd02839e8}" name="MR" id="{9594131f-3ceb-4ab8-88e4-eefdf0f9eee1}">
+      <enabled>1</enabled>
+      <bitrate>10000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations>
+        <destination>
+          <type>file</type>
+          <format>mp4</format>
+          <uri>D:/atvrecordings/MasterRight_%DATETIME%.mp4</uri>
+        </destination>
+      </destinations>
+    </encoders>
+    <encoders feed="{fc554c6e-e5a0-4924-b9b2-d614a11e0c10}" name="MC" id="{a540129b-76f9-4f55-b8ac-00250c9d2623}">
+      <enabled>1</enabled>
+      <bitrate>10000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations>
+        <destination>
+          <type>file</type>
+          <format>mp4</format>
+          <uri>D:/atvrecordings/MasterCenter_%DATETIME%.mp4</uri>
+        </destination>
+      </destinations>
+    </encoders>
+    <encoders feed="panorama" name="Panorama" id="{b0357e68-33d1-4c5f-b079-cbac6d51e5d9}">
+      <enabled>1</enabled>
+      <bitrate>10000000</bitrate>
+      <width>3840</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations>
+        <destination>
+          <type>file</type>
+          <format>mp4</format>
+          <uri>D:/atvrecordings/Panorama_%DATETIME%.mp4</uri>
+        </destination>
+      </destinations>
+    </encoders>
+    <encoders feed="composition" name="Program Feed (With overlays) - Quality B" id="{c32b2eec-bb9e-4424-bf43-e25d96df28a9}">
+      <enabled>0</enabled>
+      <bitrate>5000000</bitrate>
+      <width>1920</width>
+      <height>1080</height>
+      <audio>0</audio>
+      <gop>50</gop>
+      <preset>High</preset>
+      <profile>High Quality</profile>
+      <destinations/>
+    </encoders>
+  </Encoders>
+</Production>
